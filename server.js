@@ -71,7 +71,6 @@ app.get("/api/username", (req, res) => {
   res.json({ username });
 });
 
-
 app.post("/logout", (req, res) => {
   req.session.destroy(() => {
     res.redirect("/login");
