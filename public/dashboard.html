@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2 id="welcome">Ciao!</h2>
+    <form action="/logout" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+
+  <script>
+    fetch("/api/username")
+      .then(res => {
+        if (!res.ok) {
+          window.location.href = "/login";
+        }
+        return res.json();
+      })
+      .then(data => {
+        document.getElementById("welcome").innerText = `Ciao, ${data.username}!`;
+      })
+      .catch(() => {
+        window.location.href = "/login";
+      });
+  </script>
+</body>
+</html>

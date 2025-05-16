@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<script>
+  function check(){
+    const pass=(document.getElementsByName("password")[0].value)
+    const confirm=(document.getElementsByName("confirmpassword")[0].value)
+
+    if (pass!=confirm){      
+      alert("Le password non coincidono")
+      location.reload()
+      return false
+    }
+  }
+  window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.has("error")){
+      alert("La mail è già registrata")
+    }
+  }
+</script>
+<body>
+  <div class="container">
+    <h1>Signup</h1>
+    <form action="signup" method="post" onsubmit="return check();">
+      <input type="email" name="email" placeholder="Email" required="required" />
+      <input type="password" name="password" placeholder="Password" required="required" />
+      <input type="password" name="confirmpassword" placeholder="Conferma password" required="required" />
+      <button type="submit" id="button">Registrati</button>
+    </form>
+    <p>Sei già registrato? <a href="login">Accedi</a></p>
+  </div>
+</html>
